@@ -10,4 +10,8 @@ store.dispatch(projectAdded({ name: "Porject1" }));
 store.dispatch(actions.bugAdded({ discription: "bug1" }));
 store.dispatch(actions.bugAdded({ discription: "bug2" }));
 store.dispatch(actions.bugAdded({ discription: "bug3" }));
-console.log(store.getState());
+
+const x = actions.getUnresolveBugs(store.getState());
+const y = actions.getUnresolveBugs(store.getState());
+
+console.log(x === y);
