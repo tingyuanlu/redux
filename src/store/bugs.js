@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useDebugValue } from "react";
 import { createSelector } from "reselect";
 let lastId = 0;
 const slice = createSlice({
@@ -35,3 +34,8 @@ export const getUnresolveBugs = createSelector(
   (state) => state.entities.projects,
   (bugs, projects) => bugs.filter((bug) => !bug.resolved)
 );
+export const getBugsByUser = (userId) =>
+  createSelector(
+    (state) => state.entities.bugs,
+    (bugs) => bugs.filter((bug) => bug.userId === userId)
+  );
