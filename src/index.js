@@ -1,20 +1,11 @@
 import configureStore from "./store/configureStore";
-import {
-  bugAdded,
-  bugResolved,
-  bugAssignedToUser,
-  getUnresolveBugs,
-  getBugsByUser,
-} from "./store/bugs";
-import { projectAdded } from "./store/projects";
-import { userAdded } from "./store/users";
+
 const store = configureStore();
 
-store.subscribe(() => {
-  console.log("Store change");
+store.dispatch((dispatch, getState) => {
+  //call an API
+  //when the promise is resolved =>dispatch()
+  dispatch({ type: "bugReceived", bugs: [1, 2, 3] });
+  console.log(getState());
+  //if the promise is rejected=>dispatch()
 });
-
-store.dispatch(userAdded({ name: "user1" }));
-
-const bugs = getBugsByUser(1)(store.getState());
-console.log(bugs);
