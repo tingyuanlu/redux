@@ -1,11 +1,19 @@
 import configureStore from "./store/configureStore";
-
+import * as actions from "./store/api";
 const store = configureStore();
+store.dispatch(
+  actions.apiCallBegan({
+    url: "bugs",
+    onSuccess: "bugsReceived",
+  })
+);
+// Without action creater
+//store.dispatch({
+//   type: "apiCallBegan",
+//   payload: {
+//     url: "/bugs",
 
-store.dispatch((dispatch, getState) => {
-  //call an API
-  //when the promise is resolved =>dispatch()
-  dispatch({ type: "bugReceived", bugs: [1, 2, 3] });
-  console.log(getState());
-  //if the promise is rejected=>dispatch()
-});
+//     onSuccess: "bugsReceived",
+//     onError: "apiRequestFailed",
+//   },
+// });
